@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBL Presentation | 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* TIMER UI - FIXED CONTRAST */
+        #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
+        @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
+        .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
+        .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.bottom-10{bottom:2.5rem}.right-10{right:2.5rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-1{margin-top:0.25rem}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-80{height:20rem}.h-full{height:100%}.w-auto{width:auto}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-6xl{max-width:72rem}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-12>:not([hidden]):not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem * var(--tw-space-y-reverse))}.space-y-32>:not([hidden]):not([hidden]){--tw-space-y-reverse:0;margin-top:calc(8rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(8rem * var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[2\.5rem\]{border-radius:2.5rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-\[3\.5rem\]{border-radius:3.5rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-4{border-bottom-width:4px}.border-l-2{border-left-width:2px}.border-l-4{border-left-width:4px}.border-r-4{border-right-width:4px}.border-t{border-top-width:1px}.border-t-4{border-top-width:4px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-blue-500\/30{border-color:rgb(59 130 246/0.3)}.border-blue-500\/50{border-color:rgb(59 130 246/0.5)}.border-blue-600{--tw-border-opacity:1;border-color:rgb(37 99 235/var(--tw-border-opacity,1))}.border-green-500\/20{border-color:rgb(34 197 94/0.2)}.border-purple-500\/50{border-color:rgb(168 85 247/0.5)}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.border-slate-800\/50{border-color:rgb(30 41 59/0.5)}.border-slate-900{--tw-border-opacity:1;border-color:rgb(15 23 42/var(--tw-border-opacity,1))}.border-white\/10{border-color:rgb(255 255 255/0.1)}.bg-black\/40{background-color:rgb(0 0 0/0.4)}.bg-green-500\/5{background-color:rgb(34 197 94/0.05)}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/5{background-color:rgb(255 255 255/0.05)}.object-contain{object-fit:contain}.p-1{padding:0.25rem}.p-10{padding:2.5rem}.p-12{padding:3rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.p-8{padding:2rem}.px-12{padding-left:3rem;padding-right:3rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-32{padding-bottom:8rem}.pl-6{padding-left:1.5rem}.pt-10{padding-top:2.5rem}.pt-48{padding-top:12rem}.text-left{text-align:left}.text-center{text-align:center}.text-justify{text-align:justify}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-\[0\.3em\]{letter-spacing:0.3em}.tracking-\[0\.5em\]{letter-spacing:0.5em}.tracking-tight{letter-spacing:-0.025em}.tracking-tighter{letter-spacing:-0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128/var(--tw-text-opacity,1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94/var(--tw-text-opacity,1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252/var(--tw-text-opacity,1))}.text-purple-500{--tw-text-opacity:1;color:rgb(168 85 247/var(--tw-text-opacity,1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.opacity-50{opacity:0.5}.opacity-70{opacity:0.7}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0/0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0/0.1),0 4px 6px -4px rgb(0 0 0/0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0/0.1),0 2px 4px -2px rgb(0 0 0/0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-green-900\/40{--tw-shadow-color:rgb(20 83 45/0.4);--tw-shadow:var(--tw-shadow-colored)}.transition{transition-property:color,background-color,border-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-text-decoration-color,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}.hover\:bg-green-500:hover{--tw-bg-opacity:1;background-color:rgb(34 197 94/var(--tw-bg-opacity,1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}@media (min-width:768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:text-7xl{font-size:4.5rem;line-height:1}}</style></head>
+<body onload="startTimer()">
+
+    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+    </div>
+
+    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height: 48px; width: 48px;">
+                <img src="data:image/jpeg;base64,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" alt="MUJ" class="h-full w-auto object-contain">
+            </div>
+            <div class="flex flex-col text-left">
+                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
+                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science &amp; Engineering</span>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+            <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
+            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
+            <a href="#results" class="hover:text-blue-400 transition">Results</a>
+            <a href="#team" class="hover:text-blue-400 transition">Team</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
+        
+        <section class="text-center">
+            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">ID: 2427030750</div>
+            <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight"><span class="gradient-text uppercase">Credit Card Fraud Detection</span></h1>
+            <p class="text-slate-400 max-w-2xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
+                "Can machine learning models trained on anonymized transaction patterns reliably detect fraudulent credit card activity — and how does a hybrid classical–quantum approach compare to classical models in accuracy and recall?"
+            </p>
+        </section>
+
+        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
+                <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
+                <p class="text-slate-400 leading-relaxed text-justify">Credit card fraud causes over $32 billion in losses globally each year. Fraudulent transactions — including card cloning, stolen card details used online, and behavioral anomalies — are rare events buried within millions of legitimate transactions. Existing rule-based bank systems generate excessive false alarms and miss sophisticated fraud patterns. A machine learning model capable of detecting complex fraud in real time, with high recall and low false negatives, is critically needed by the financial industry.</p>
+            </div>
+            <div class="space-y-6">
+                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
+                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Literature Review / Market Research</h3>
+                    <p class="text-sm text-slate-500 italic">Current fraud detection systems at Visa and Mastercard use classical gradient boosting and deep learning. The ULB benchmark dataset (2013) is widely studied — top published solutions achieve ROC-AUC of 0.97–0.98 using XGBoost and Random Forest. Class imbalance (0.17% fraud rate) remains a key challenge. No commercial bank has deployed quantum ML for real-time fraud detection as of 2026.</p>
+                </div>
+                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
+                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">Research Gap / Innovation</h3>
+                    <p class="text-sm text-slate-500 italic">This project builds a hybrid classical–quantum pipeline: Random Forest and XGBoost for classical classification, with a Variational Quantum Circuit (VQC) via PennyLane as the quantum classifier. The comparison of classical vs. quantum performance on fraud data is an active open research problem. No production quantum fraud detection system exists anywhere globally, making this work genuinely forward-looking.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Dataset / Input</h3>
+                    <p class="text-sm text-slate-500">ULB Credit Card Fraud Dataset — 284,807 real European transactions (Sept 2013). Features: Time, Amount, V1–V28 (PCA-anonymized). Target: Class (0 = Genuine, 1 = Fraud). Only 0.17% fraud. Class imbalance corrected using SMOTE — synthetic fraud samples generated from 492 to 227,451.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Model / Architecture</h3>
+                    <p class="text-sm text-slate-500">Pipeline: StandardScaler (Amount, Time) → SMOTE → 80/20 stratified split → Random Forest (100 trees, max_depth=10) → XGBoost (100 trees, lr=0.1) → Variational Quantum Circuit (PennyLane, 4 qubits, AngleEmbedding + BasicEntanglerLayers) → Evaluation: Precision, Recall, F1-Score, ROC-AUC, Confusion Matrix.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center border-2 border-green-500/20 bg-green-500/5">
+                    <i class="fab fa-python text-green-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">Live Execution</h3>
+                    <a href="https://colab.research.google.com/drive/1HbZOjFRsvTxo18cENwwp7gqiQYADD9rE?authuser=1" target="_blank" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40">VIEW CODE / DEMO</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results &amp; <span class="text-blue-500">Analysis</span></h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="h-80"><canvas id="resultsChart"></canvas></div>
+                <div class="space-y-6">
+                    <div class="p-6 rounded-2xl bg-white/5 flex justify-between items-center border border-white/10 shadow-inner">
+                        <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Best ROC-AUC Score</span>
+                        <span class="text-blue-400 font-mono font-black text-3xl">0.98</span>
+                    </div>
+                    <p class="text-slate-500 text-sm italic text-justify leading-relaxed">Random Forest achieved Recall of 88% and ROC-AUC of 0.98, outperforming XGBoost (Recall 87%, AUC 0.97). Out of 98 real fraud cases in the test set, 86 were correctly flagged — only 12 missed. False alarm rate was minimal: 115 false positives out of 56,864 genuine transactions. Both models significantly outperform the baseline rule-based system benchmark of ~70% detection rate.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="text-center pt-10 border-t border-slate-900">
+            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
+            <div class="flex flex-wrap justify-center gap-10">
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+                    <p class="font-black text-xl text-slate-100">Dr. Tapan Kumar Dey</p>
+                </div>
+                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Team Member 1</p>
+                    <p class="font-black text-xl text-slate-100">Tanveer Singh Chawla</p>
+                    <p class="text-[10px] text-slate-500 mt-1">2427030750</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
+        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
+        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science &amp; Engineering • 2026</p>
+    </footer>
+
+    <script>
+        // TIMER LOGIC
+        let sec = 0;
+        let timer = null;
+        function startTimer() {
+            timer = setInterval(() => {
+                sec++;
+                let m = Math.floor(sec / 60);
+                let s = sec % 60;
+                document.getElementById('displayTime').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                
+                if (sec >= 480 && sec < 600) {
+                    document.getElementById('timerContainer').classList.add('timer-warning');
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
+                } else if (sec >= 600) {
+                    clearInterval(timer);
+                    document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
+                    document.getElementById('displayTime').innerText = "10:00";
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-half', 'fa-hourglass-end');
+                }
+            }, 1000);
+        }
+
+        // RESULTS CHART
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Rule-Based Baseline', 'Our Solution (RF)'],
+                datasets: [{
+                    data: [70, 98],
+                    backgroundColor: ['#1e293b', '#3b82f6'],
+                    borderRadius: 15,
+                    barThickness: 50
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { beginAtZero: true, grid: { color: '#ffffff05' }, ticks: { color: '#475569' } },
+                    x: { grid: { display: false }, ticks: { color: '#475569' } }
+                }
+            }
+        });
+    </script>
+
+</body></html>
